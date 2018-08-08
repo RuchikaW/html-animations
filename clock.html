@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1{text-align:center;color:red;text-shadow:2px 2px 8px olive;}
+</style>
+</head>
+<body>
+      <h1>Real Clock</h1>
+      <canvas id="myCanvas" width="400" class="img-responsive" height="300" style="background-image:url('images/clock_n.jpg');background-repeat:no-repeat;background-position:center;">
+      </canvas><br /><br />
+   <div class="text-center">
+    <input type="checkbox"  value="Roman" id="chkdial" /><span>&nbsp;&nbsp;Roman Numerals&nbsp;&nbsp;</span>
+      <input type="button" value="Start the Clock"  onclick="window.setInterval('timing()',1000)" />
+   </div>
+   <p>&nbsp;</p>
+       <script type="text/javascript" >
+           var canvas = document.getElementById('myCanvas');
+           var context = canvas.getContext('2d');
+           var k;
+           staticDial(2);
+           function timing() {
+               //get date
+               var tme = new Date();
+               //get seconds
+               var s = tme.getSeconds();
+               //get minutes
+               var m = tme.getMinutes();
+               //get hours
+               var h = tme.getHours();
+               //coordinates for 'seconds' hand
+               var x1 = 190 + 120 * Math.cos((270 + 6 * s) * Math.PI / 180);
+               var y1 = 150 + 120 * Math.sin((270 + 6 * s) * Math.PI / 180);
+               //coordinates for minute hand
+               var x2 = 200 + 100 * Math.cos((270 + 6 * m) * Math.PI / 180);
+               var y2 = 150 + 100 * Math.sin((270 + 6 * m) * Math.PI / 180);
+               // adjustment for the hour hand
+               if (h >= 12) {
+                   h = h + 12;
+               }
+               if (m > 30) { h = h + 0.5; }
+               //coordinates for hour hand
+               var x3 = 200 + 80 * Math.cos((270 + 30 * h) * Math.PI / 180);
+               var y3 = 150 + 80 * Math.sin((270 + 30 * h) * Math.PI / 180);
+               // clear the canvas in after every 1000 ms
+               context.clearRect(0, 0, 400, 300);
+               // condition for testing for dial-type
+               if (document.getElementById('chkdial').checked)
+               { staticDial(1); }
+               else
+               { staticDial(2); }
+               //seconds
+               context.beginPath();
+               context.moveTo(200, 150);
+               context.lineTo(x1, y1);
+               //context.closePath();
+               context.strokeStyle = 'red';
+               context.lineWidth = 3;
+               context.stroke();
+               //minutes
+               context.beginPath();
+               context.moveTo(200, 150);
+               context.lineTo(x2, y2);
+               context.strokeStyle = 'blue';
+               context.lineWidth = 6;
+               context.stroke();
+               //hours
+               context.beginPath();
+               context.moveTo(200, 150);
+               context.lineTo(x3, y3);
+               context.strokeStyle = 'magenta';
+               context.lineWidth = 8;
+               context.stroke();
+               //dial
+               context.beginPath();
+               context.arc(200, 150, 140, 0, 2 * Math.PI, false);
+               context.strokeStyle = 'lightblue';
+               context.lineWidth = 3;
+               context.stroke();
+               context.closePath();
+               //button at the centre to cover the terminals of hands
+               context.beginPath();
+               context.arc(200, 150, 10, 0, 2 * Math.PI, false);
+               context.fillStyle = 'lightblue';
+               context.fill();
+               context.closePath();
+           }
+           // code for static dial
+           function staticDial(k) {
+               // background image of the canvas is determined by this - Arab numerals or Roman numerals
+               if (k == 1)
+               { document.getElementById('myCanvas').style.backgroundImage = "url(images/clock_r.jpg)"; }
+               else {
+                   document.getElementById('myCanvas').style.backgroundImage = "url(images/clock_n.jpg)";
+                   //dial
+                   context.beginPath();
+                   context.arc(200, 150, 140, 0, 2 * Math.PI, false);
+                   context.strokeStyle = 'lightblue';
+                   context.lineWidth = 3;
+                   context.stroke();
+                   context.closePath();
+               }
+           }
+       </script>
+      </body>
+</html>
