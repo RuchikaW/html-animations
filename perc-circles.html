@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#candle{margin-left:auto;margin-right:auto;text-align:center;}
+h1{text-align:center;color:red;text-shadow:2px 2px 8px olive;}
+</style>
+</head>
+<body>
+    <div id="candle">
+      <h1>Animated Percentage Circles with JavaScript</h1>
+       <div style="width:600px;;margin-left:auto;margin-right:auto;">
+       <canvas id="canvas" width="400" class="img-responsive" height="400">
+       </canvas>
+      <p>&nbsp;</p>
+        </div> 
+        <canvas id="Canvas_One" width="400" class="img-responsive" height="300" style=""></canvas>
+        <script>
+          var canvas = document.getElementById('canvas');
+          var context = canvas.getContext('2d');
+          //Declare variables for the angle, increment and percentage
+          var a = 0, b = 5, d;
+          function draw() {
+              a = a + b;
+              if (a == 360) { a = 0; }
+              c = Math.PI * a / 180;
+              d = Math.round(100 * a / 360);
+              context.clearRect(0, 0, 500, 500);
+              context.beginPath();
+              context.lineWidth = 25;
+              context.strokeStyle = '#343434';
+              //Draw a dark static circle
+              context.arc(200, 200, 100, 0, 2 * Math.PI, false);
+              context.stroke();
+              //Display the percentage
+              context.beginPath();
+              context.font = 'bold 30pt Calibri';
+              context.fillText(d + '%', 180, 210);
+              context.fillStyle = "olive";
+              context.fill();
+              //Draw the dynamic circle
+              context.beginPath();
+              context.arc(200, 200, 100, 0, c, false);
+              //Gradient for the dynamic circle
+              var grd = context.createRadialGradient(200, 200, 102, 200, 200, 104);
+              grd.addColorStop(0, 'lemonchiffon');
+              grd.addColorStop(1, 'olive');
+              context.strokeStyle = grd;
+              context.stroke();
+          }
+          //Call the function every in 150 milliseconds
+          window.setInterval(draw, 150); 
+      
+       </script> 
+</div>
+
+</body>
+</html>
