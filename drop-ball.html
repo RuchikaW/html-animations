@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1{text-align:center;color:red;text-shadow:2px 2px 8px olive;}
+</style>
+</head>
+<body>
+      <h1>Bouncing Ball</h1>
+      <canvas id="Canvas_One" width="400" class="img-responsive" height="300" style="">
+    </canvas>
+    <div>
+    <input type="button" style="float:left;margin-left:10px;"  value="Drop the Ball" onclick="start_one()" id="Animation" />
+     <input type="button" style="float:left;margin-left:100px;" value="Reset" onclick="resetting()" id="Stopping" />
+    <audio id="audio1">
+  <source src='sounds/hit.wav' type='audio/wav' />
+  </audio>
+   </div>  
+   <div class="clearfix"></div>
+     <br /><br />
+     <script type="text/javascript">
+     var xx; var a=0; var b=10; var c=100; var x=0;
+     var canvas = document.getElementById('Canvas_One');
+     var context = canvas.getContext('2d');
+     resetting();
+     // print the title of the animation on canvas
+     function titling(){
+        context.font = '20pt Calibri';
+        context.fillStyle = 'green';
+        context.fillText('The Bouncing Ball', 100, 30);
+    }
+      // code for resetting
+     function resetting(){
+      c=100;a=0;x=0;
+      context.clearRect(0,0,400,300);
+      titling();
+      context.beginPath();
+      context.arc(80,100,20,0,2*Math.PI,false);
+      var grd = context.createRadialGradient(80, 100, 3, 80, 100, 18);
+       grd.addColorStop(0, '#8ED6FF');
+       grd.addColorStop(1, '#004CB3');
+       context.fillStyle = grd;
+       context.fill();
+       context.beginPath();
+       context.moveTo(0,122);
+       context.lineTo(100,122);
+       context.lineWidth=4;
+       context.strokeStyle="red";
+       context.stroke();
+       }
+       // code for dropping the ball
+      function dropping(){
+       a=a+b;
+       x=x+2.5;
+         if(a==c){b=-10;}
+         if(a==0){b=10;c=c-10;} 
+       context.beginPath();
+       context.moveTo(0,122);
+       context.lineTo(100,142);
+       context.lineWidth=4;
+       context.strokeStyle="green";
+       context.stroke();
+       context.clearRect(0,0,400,300);
+       context.font = '20pt Calibri';
+       context.fillStyle = 'green';
+       context.fillText('The Bouncing Ball', 100, 30);
+       context.beginPath();
+       context.arc(80+x,180+(100-a),20,0,2*Math.PI,false);
+       var grd = context.createRadialGradient(80+x, 180+(100-a), 3, 80+x, 180+(100-a), 18);
+       grd.addColorStop(0, '#8ED6FF');
+       grd.addColorStop(1, '#004CB3');
+       context.fillStyle = grd;
+       context.fill();
+       if (c == 20) { window.clearInterval(xx); }
+       var aud = document.getElementById('audio1');
+       if (a == 0 || a == 10) { aud.play(); }
+ 
+ }
+       // code for using the timer
+       function start_one(){
+        xx=window.setInterval('dropping()',80);
+       }
+        </script>	
+       </body>
+</html>

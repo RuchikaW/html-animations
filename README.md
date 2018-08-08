@@ -8,3 +8,4 @@ The list includes the following:
 5) Percentage circle created without the aid of JQuery.
 6) An animated spring created without external images - just by manipulating sine curve
 7) An interactive vernier calliper is added
+8) An animated bouncing ball is added
