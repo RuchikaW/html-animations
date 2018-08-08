@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#candle{margin-left:auto;margin-right:auto;text-align:center;}
+h1{text-align:center;color:brown;text-shadow:2px 2px orange;}
+</style>
+</head>
+<body>
+    <div id="candle">
+        <h1>The Candle</h1>
+        <canvas id="Canvas_One" width="400" class="img-responsive" height="300" style=""></canvas>
+        <br /><br />
+        <input type="button" value="Light Up" onclick="window.setInterval('drawing()',10)" />
+        <script type="text/javascript">
+          var canvas = document.getElementById('Canvas_One');
+          var context = canvas.getContext('2d');
+          var a=0;var b=0.1;
+                // top of the candle
+          context.beginPath();
+          context.moveTo(190,150);
+          context.arc(200,150,22,0,Math.PI+0.1,false);
+          context.fillStyle='lightgrey';
+          context.fill();
+          // wax
+          context.beginPath()
+          context.moveTo(180,150);
+          context.rect(180,150,40,150);
+          context.fillStyle = 'lightgrey';
+          context.fill();
+          // the wick
+          context.beginPath();
+          context.moveTo(197,135);
+          context.fillStyle="black";
+          context.fill();
+          context.fillRect(197,135,5,15);
+          context.closePath();
+    
+          function drawing(){
+          a=a+b;
+          if(a>=3){b=-0.1;}
+          if(a<=-3){b=0.1;}
+          // clear canvas
+          context.clearRect(0,0,400,300);
+          // top of the candle
+          context.beginPath();
+          context.moveTo(190,150);
+          context.arc(200,150,22,0,Math.PI+0.1,false);
+          context.fillStyle='lightgrey';
+          context.fill();
+          
+          //yellow part of flame
+          context.beginPath();
+          context.moveTo(188,150);
+          context.quadraticCurveTo(200+a,18-a,212,150);
+          context.closePath();
+          context.fillStyle="#FFFE00";
+          context.fill();
+          
+          //white part of flame
+          context.beginPath();
+          context.moveTo(193,150);
+          context.quadraticCurveTo(200+a,25-a,207,150);
+          context.closePath();
+          context.fillStyle="#E9DD00";
+          context.fill();
+    
+          
+          // blue part of flame
+          context.beginPath();
+          context.moveTo(194,150);
+          context.quadraticCurveTo(200+a,90+a,206,150);
+          context.fillStyle="rgba(0,0,255,0.8)";
+          context.fill();
+          
+          // the wick
+          context.beginPath();
+          context.moveTo(197,135);
+          context.fillStyle="black";
+          context.fill();
+          context.fillRect(197,135,5,15);
+          context.closePath();
+    
+          // wax
+          context.beginPath()
+          context.moveTo(180,150);
+          context.rect(180,150,40,150);
+          context.fillStyle = 'lightgrey';
+          context.fill();
+          }
+        </script>
+</div>
+<div id="pendulum">
+    
+</div>
+</body>
+</html>
