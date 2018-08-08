@@ -4,4 +4,6 @@ The list includes the following:
 1) A real analogue clock
 2) An animated real-looking solar system
 3) Animated beautiful heart, created with polar equations
-4)
+4) An animated candle, created without external images.
+4) Percentage circle created without the aid of JQuery.
+5) An animated spring created without external images - just by manipulating sine curve
