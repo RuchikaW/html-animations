@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1{text-align:center;color:red;text-shadow:2px 2px 8px olive;}
+</style>
+</head>
+<body>
+      <h1>Animated Spring</h1>
+      <canvas id="Canvas_Two" width="400" height="300" class="img-responsive"  style="float:left;margin-right:10px;margin-top:10px;border-top:5px solid grey;"></canvas>
+      <div style="clear:both;padding-t0p:50px;padding-left:10px;margin-top:10px;border-left:1px solid grey;">
+       <!----radio buttons for speed control---------------------------->
+       <div class="clearfix"></div>  
+       <form name="pendulum" action="">
+           <input id="R4" name="speed" value="Slow" type="radio" /> Slow
+           <input id="R5" name="speed" value="Medium" type="radio" /> Medium
+           <input id="R6" name="speed" value="Fast" type="radio" /> Fast
+       </form>
+      </div>
+       <div class="clearfix"></div>
+      <p>&nbsp;</p>
+      <p>Please <strong>stop</strong> the spring <strong>before changing</strong> the speed.</p>
+      <div style="width:500px;height:500px;">
+         <input type="button" style="float:left;margin-left:10px;"  value="Run" onclick="anim1()" id="Button1" />
+          <input type="button" style="float:right;margin-right:10px;" value="Stop" onclick="stop1()" id="Button2" >
+      </div>   
+          <div class="clearfix"></div>
+      <p>&nbsp;</p>  
+             <input type="hidden" id="h2" value="4" />
+      
+        <script type="text/javascript">
+            var canvas = document.getElementById('Canvas_Two');
+            var context1 = canvas.getContext('2d');
+            context1.beginPath();
+            context1.moveTo(200, 0);
+            for (var i = 0; i <= 220; i++) {
+                context1.lineTo(200 + 20 * Math.sin(5 * i * Math.PI / 180), i * 0.5);
+                context1.lineWidth = 5;
+                context1.strokeStyle = 'grey';
+                context1.stroke();
+            }
+            context1.beginPath();
+            context1.arc(200, 100, 35, 0, 2 * Math.PI, false);
+            var grd = context1.createRadialGradient(200, 100, 5, 200, 100, 30);
+            // light blue
+            grd.addColorStop(0, '#8ED6FF');
+            // dark blue
+            grd.addColorStop(1, '#004CB3');
+            context1.fillStyle = grd;
+            context1.fill();
+            var a = 1;
+            var xx;
+            function move() {
+                var x = eval(document.getElementById('h2').value);
+                x = x + a
+                if (x == 8 || x > 8) { a = -1; }
+                if (x == 4 || x < 4) { a = 1; }
+                context1.clearRect(0, 0, 400, 300);
+                context1.beginPath();
+                context1.moveTo(200, 0);
+                for (var i = 0; i <= 220; i++) {
+                    context1.lineTo(200 + 20 * Math.sin(5 * i * Math.PI / 180), i * x * 0.1);
+                    context1.lineWidth = 5;
+                    context1.strokeStyle = 'grey';
+                    context1.stroke();
+                }
+                context1.beginPath();
+                context1.arc(200, x * 20 + 40, 35, 0, 2 * Math.PI, false);
+                var grd = context1.createRadialGradient(200, x * 20 + 40, 5, 200, x * 20 + 40, 30);
+                // light blue
+                grd.addColorStop(0, '#8ED6FF');
+                // dark blue
+                grd.addColorStop(1, '#004CB3');
+                context1.fillStyle = grd;
+                context1.fill();
+                document.getElementById('h2').value = x;
+            }
+            function anim1() {
+                if
+                  (document.getElementById('R4').checked)
+                { sp = 400; }
+                else if (document.getElementById('R5').checked) { sp = 300; }
+                else if (document.getElementById('R6').checked) { sp = 200; }
+                else
+                { sp = 500; }
+                xx = window.setInterval('move()', sp);
+            }
+            function stop1() {
+                //empty the hidden element on exit
+                document.getElementById('h2').value = 4;
+                window.clearInterval(xx);
+            }
+            </script>	
+      </body>
+</html>
