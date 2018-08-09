@@ -1,4 +1,4 @@
-#html5-animations
+
 These are a set of HTML5 animations that I created for my website as a JavaScript hobbyist. I use HTML5 canvas and plain JavaScript to produce that turned out be very nice.
 They were originally published on my website - https://www.vivaxsolutions.com
 The list includes the following:
