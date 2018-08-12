@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+h1{text-align:center;color:red;text-shadow:2px 2px 8px olive;}
+</style>
+</head>
+<body>
+      <h1>Physics: Vector / Scalar - displacement and distance</h1>
+  <!--hidden element to store the values for animation -->
+  <input type="hidden" id="h" value="0" />
+   <!-- buttons to start and stop the animation -->
+   <canvas id="Canvas_One" width="400" height="300">
+    </canvas>
+   <div>
+
+        <input type="button" style="float:left;margin-left:10px;"  value="Start" onclick="start_one()" id="Animation" />
+         <input type="button" style="float:left;margin-left:200px;" value="Stop" onclick="stop_one()" id="Stopping" >
+       </div> 
+   <br />
+   <script type="text/javascript">
+    var canvas = document.getElementById('Canvas_One');
+    var context = canvas.getContext('2d');
+    // increse the movement along the road
+    var a=5;
+    var x;
+    // create the image of a car on canvas
+    var imgObj = new Image();
+    // create a message on load
+    context.font = '20pt Calibri';
+    context.textAlign = 'center';
+    context.fillStyle = 'blue';
+    context.fillText('Move a Car Here!', 192, 150);
+
+    function motion() {
+    // initial value comes from a hidden field
+    x=eval(document.getElementById('h').value);
+    x = x + a;
+    // clear the canvas
+    context.clearRect(0, 0, 400, 300);
+    // draw the first image on the canvas
+    context.drawImage(imgObj,x,150);
+    // soruce of the image when conditions are met
+    if (x > 375) { a = -5; imgObj.src = "images/car2.png"; }
+    // draw the second image on the canvas
+    if(x<=5){a=5;imgObj.src="images/car1.png";}
+    document.getElementById('h').value=x;
+    context.font = '12pt Calibri';
+    context.textAlign = 'center';
+    context.fillStyle = 'blue';
+    // show the displacement on canvas
+    context.fillText('Displacement = ' + x + ' m', 125, 250);
+    context.fillStyle = 'purple';
+    // show the displacement on canvas
+    if (a > 0) { context.fillText('Distance = ' + x + ' m', 285, 250); }
+    else
+    { context.fillText('Distance = ' +(750-x) + ' m', 285, 250); }
+    if ((750 - x) >= 740 && a < 0) { stop_one(); }
+    context.fillStyle = 'green';
+    context.font = '20pt Calibri';
+    context.fillText('Vector VS Scalar', 200, 40);
+    }
+    var xx;
+    function start_one(){
+    xx=window.setInterval('motion()',200);
+    }
+    function stop_one(){
+    window.clearInterval(xx);
+    }
+    
+    </script>
+
+      </body>
+</html>
