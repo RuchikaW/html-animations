@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+h1{text-align:center;color:red;text-shadow:2px 2px 8px olive;}
+</style>
+</head>
+<body>
+      <h1>Thunderstorm - lightning</h1>
+      <div style="width:510px;height:auto;margin-left:auto;margin-right:auto;margin-top:10px;margin-bottom:10px;">
+        <canvas id="Canvas_Six" class="img-responsive" width="240" height="400" style="background-image:url('images/thunder.jpg');background-repeat:no-repeat;float:left;margin-right:10px;">
+        </canvas>
+          <p>&nbsp;</p>
+      </div> 
+      <script>
+        {
+        var canvas = document.getElementById('Canvas_Six');
+        var context_six = canvas.getContext('2d');
+        var y = new Date();
+        var s = y.getSeconds();
+        var imgCloud = new Image();
+        var imgShock = new Image();
+        var xc, yc;
+        var a = 0;
+        function orbit() {
+        context_six.clearRect(0, 0, 240, 400);
+        a = a + 1;
+        xc = 10 * a; yc = 10;
+        /*context_six.font = '12pt Calibri';
+        context_six.fillStyle = 'red';
+        context_six.fillText(a, 150,150);*/
+        if (a == 35) { a = 0; }
+        context_six.beginPath();
+        for (var j = 0; j <= 500; j++) {
+        context_six.font = '12pt Calibri';
+        context_six.fillStyle = 'grey';
+        context_six.fillText(',', Math.random() * 240 + 1, Math.random() * 390 + 1);
+        }
+        context_six.drawImage(imgCloud, 240 - xc, yc + 2 * Math.sin(a));
+        if (a < 10) { imgCloud.src = 'images/cloud1.png'; }
+        if (a > 10 && a < 20) {
+        context_six.font = '12pt Calibri';
+        context_six.fillStyle = 'white';
+        for (var i = 72; i < 186; i = i + 10) {
+        context_six.fillText('+', i, 155 + 5 * Math.random());
+        }
+        context_six.fillText('+', 125, 128);
+        context_six.fillText('+', 130, 120);
+        context_six.fillText('+', 135, 128);
+        imgCloud.src = '../images/cloud2.png';
+        //document.getElementById('Canvas_Six').style.backgroundImage = "";
+        }
+        if (a > 20) { imgCloud.src = 'images/cloud.png'; }
+        if (a > 17 && a < 20) {
+        context_six.beginPath();
+        context_six.moveTo(134, 50);
+        context_six.lineTo(134, 120);
+        context_six.lineWidth = 3;
+        context_six.moveTo(205, 200);
+        context_six.lineTo(206, 230);
+        context_six.lineWidth = 3;
+        context_six.moveTo(195, 330);
+        context_six.lineTo(198, 360);
+        context_six.lineWidth = 3;
+        context_six.strokeStyle = 'white';
+        context_six.stroke();
+        //context.six.closePath();
+        //context_six.beginPath();
+        context_six.drawImage(imgShock, 186, 380);
+        imgShock.src = 'images/shock.png';
+        }
+        //context_six.font = '12pt Calibri';
+        //context_six.fillStyle = 'white';
+        // context_six.fillText('Year: ' + year, 40, 20);
+        // document.getElementById('Canvas_Six').style.backgroundImage = "";
+        }
+        window.setInterval('orbit()', 500);
+        }
+        </script>
+</body>
+</html>
