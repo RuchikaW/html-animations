@@ -13,3 +13,4 @@ The list includes the following:
 9) Physics: vector / scalars - distinction between git adddistance and displacement - https://www.vivaxsolutions.com/web/vivax_html5_five.aspx
 10) Bearings interactive animation added - https://www.vivaxsolutions.com/web/vivax_html5_seventeen.aspx
 11) Thunderstorm added - https://www.vivaxsolutions.com/web/vivax_html5_eighteen.aspx
+12) Interactive colour maker added - https://www.vivaxsolutions.com/web/vivax_html5_nine.aspx

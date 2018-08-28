@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+h1{text-align:center;color:red;text-shadow:2px 2px 8px olive;}
+</style>
+</head>
+<body>
+      <h1>Interactive Colour Maker</h1>
+      <p>The animation allows you to use the three primary colours - red, gree and blue - to produce any other colour that you can think of.</p>
+      <p> In theory, it can produce 16-million colours, depending on the values of red, green and blue.</p>
+        <canvas id="myCanvas" width="400" height="300" class="img-responsive" style="margin-top:15px;margin-bottom:15px;"></canvas><br />
+     <table>
+         <tr>
+             <td><span style="color:red;font-weight:bold;">Red</span></td><td>0 <input type="range" id="redp" name="points" value="50" min="0" max="255" onchange="fun()" /> 255</td>
+         </tr>
+         <tr>
+            <td><span style="color:green;font-weight:bold;">Green</span></td><td>0 <input type="range" id="greenp" name="points" value="50" min="0" max="255" onchange="fun()" /> 255</td>
+        </tr>
+        <tr>
+            <td><span style="color:blue;font-weight:bold;">Blue</span></td>
+                <td>0 <input type="range" id="bluep" name="points" value="50" min="0" max="255" onchange="fun()" /> 255</td>
+        </tr>         
+
+     </table>
+     
+      <script>
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+        var radr;var radg;var radb;
+        function fun() {
+        // red value;
+        radr=eval(document.getElementById('redp').value);
+        // green value;
+        radg=eval(document.getElementById('greenp').value);
+        // blue value;
+        radb=eval(document.getElementById('bluep').value);
+        // rgb value for fillStyle 
+        var col='rgb('+radr+','+radg+','+radb+')';
+        context.clearRect(0,0,400,300);
+        context.beginPath();
+        // colour circle
+        context.arc(200,150,100,0,2*Math.PI,false);
+        context.fillStyle=col;
+        context.fill();
+        }
+        </script>
+</body>
+</html>
